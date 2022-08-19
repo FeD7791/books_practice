@@ -22,7 +22,8 @@ let entrada8 = process.argv[9];
 
 
 
-
+// Está muy bien esto, ojo la indentación: https://es.javascript.info/article/coding-style/code-style.svg
+// Falta consistencia con el punto y coma, ";", no pasa nada si no lo usás, (casi siempre), pero o lo usás siempre o no lo uses.
 
 switch(entrada){
     case 'load':
@@ -36,10 +37,16 @@ switch(entrada){
         entrada6 = cost
         entrada7 = price
          */
-        const parameters_array = [title,author,genre,year,cost,price]=[entrada2,entrada3,entrada4,entrada5,entrada6,entrada7];
-        const new_list_load = cargar(list_java,parameters_array)
+        
+        // Acá creaste todas estas variables: "title,author,genre,year,cost,price", en donde las estás usando? es código innecesario.
+        const parameters_array = [title,author,genre,year,cost,price]=[entrada2,entrada3,entrada4,entrada5,entrada6,entrada7]; // Esto está mal, acá lo que estás haciendo es usar una forma acortada de crear variables a través de un array, "[title,author,genre,year,cost,price]" y además estás creando la variable parameters_array que equivale a todo el array.
+        // Por lo que la opción correcta de hacer esto sería: "const [title,author,genre,year,cost,price] = [entrada2,entrada3,entrada4,entrada5,entrada6,entrada7];" esto se conoce como destructuring. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+        // Y además es totalmente innecesario en este caso, hacer destructuring y crear nuevas variables con cada argumento;
+        // Pero no tiene nada de malo guardar los argumentos "entrada" en un nuevo array, aunque podés usar otra forma.
+        
+        const new_list_load = cargar(list_java,parameters_array) // Recordá que process.argv ya es un array, podés usar un método para recortarlo o modificarlo, hay muchas formas de manipular un array: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
         escribir(new_list_load);//se sobreescribe el archivo de salida utilizando la funcion write
-        break
+        break // Consistencia con el punto y coma.
 
 
 
